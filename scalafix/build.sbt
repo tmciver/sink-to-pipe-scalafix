@@ -28,7 +28,8 @@ lazy val rules = project.settings(
 )
 
 lazy val input = project.settings(
-  skip in publish := true
+  skip in publish := true,
+  libraryDependencies += "co.fs2" %% "fs2-core" % "1.0.2"
 )
 
 lazy val output = project.settings(
