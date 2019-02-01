@@ -11,6 +11,7 @@ class Fs2sinkremoval extends SemanticRule("Fs2sinkremoval") {
     // println("Tree.structureLabeled: " + doc.tree.structureLabeled)
 
     val sinkMatcher = SymbolMatcher.exact("fs2/Sink.")
+    val toMethodMatcher = SymbolMatcher.exact("fs2/Stream#to().")
 
     doc.tree.collect {
 
@@ -21,6 +22,10 @@ class Fs2sinkremoval extends SemanticRule("Fs2sinkremoval") {
       // Case to fix fs2.Sink import
       case sinkMatcher(sink @ Importee.Name(name)) =>
         Patch.replaceTree(sink, "Pipe")
+
+      // Case to change calls to Stream.to to Stream.through
+      case toMethodMatcher(t @ Term.Apply(Term.Select(obj, _), args)) =>
+        Patch.replaceTree(t, Term.Apply(Term.Select(obj, Term.Name("through")), args).toString)
 
       case _ => Patch.empty
     }.asPatch
