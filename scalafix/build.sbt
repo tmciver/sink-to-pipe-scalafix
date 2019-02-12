@@ -24,7 +24,10 @@ skip in publish := true
 
 lazy val rules = project.settings(
   moduleName := "sink-to-pipe-scalafix",
-  libraryDependencies += "ch.epfl.scala" %% "scalafix-core" % V.scalafixVersion
+  libraryDependencies ++= Seq(
+    "ch.epfl.scala" %% "scalafix-core" % V.scalafixVersion,
+    "org.scalameta" %% "scalameta" % "4.1.0"
+  )
 )
 
 lazy val input = project.settings(
@@ -33,7 +36,8 @@ lazy val input = project.settings(
 )
 
 lazy val output = project.settings(
-  skip in publish := true
+  skip in publish := true,
+  libraryDependencies += "co.fs2" %% "fs2-core" % "1.0.2"
 )
 
 lazy val tests = project
