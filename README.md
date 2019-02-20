@@ -1,5 +1,7 @@
 # FS2 Sink-to-Pipe Scalafix
 
+Note: you do not need to clone this repository in order to apply the scalafix!
+
 ## Before Running the Fix
 
 Add the Scalafix plugin by adding the following line to your
