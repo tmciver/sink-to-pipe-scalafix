@@ -3,7 +3,9 @@ rule = Fs2sinkremoval
 */
 package fix
 
+import fs2._
 import fs2.{Pipe, Sink, Stream}
+import fs2.{Sink => X, Stream}
 
 object Fs2sinkremoval {
 
