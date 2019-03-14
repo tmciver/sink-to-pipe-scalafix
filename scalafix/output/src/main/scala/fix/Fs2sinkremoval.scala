@@ -1,6 +1,8 @@
 package fix
 
+import fs2._
 import fs2.{Pipe, Stream}
+import fs2.{Pipe => X, Stream}
 
 object Fs2sinkremoval {
 
