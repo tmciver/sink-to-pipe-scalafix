@@ -32,19 +32,21 @@ lazy val rules = project.settings(
 
 lazy val input = project.settings(
   skip in publish := true,
-  libraryDependencies += "co.fs2" %% "fs2-core" % "1.0.2"
+  libraryDependencies += "co.fs2" %% "fs2-core" % "1.0.2",
+  libraryDependencies += "com.typesafe.akka" %% "akka-stream" % "2.5.21"
 )
 
 lazy val output = project.settings(
   skip in publish := true,
-  libraryDependencies += "co.fs2" %% "fs2-core" % "1.0.2"
+  libraryDependencies += "co.fs2" %% "fs2-core" % "1.0.2",
+  libraryDependencies += "com.typesafe.akka" %% "akka-stream" % "2.5.21"
 )
 
 lazy val tests = project
   .settings(
     skip in publish := true,
     libraryDependencies += "ch.epfl.scala" % "scalafix-testkit" % V.scalafixVersion % Test cross CrossVersion.full,
-    compile.in(Compile) := 
+    compile.in(Compile) :=
       compile.in(Compile).dependsOn(compile.in(input, Compile)).value,
     scalafixTestkitOutputSourceDirectories :=
       sourceDirectories.in(output, Compile).value,
