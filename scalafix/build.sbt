@@ -42,6 +42,7 @@ lazy val output = project.settings(
   libraryDependencies += "com.typesafe.akka" %% "akka-stream" % "2.5.21"
 )
 
+
 lazy val tests = project
   .settings(
     skip in publish := true,
